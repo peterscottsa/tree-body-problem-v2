@@ -34,7 +34,7 @@
   "scripts": {
     "start": "concurrently 'react-scripts start' && 'tailwindcss -i ./styles.css -o ./src/output.css --watch'",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "playwright test",
     "eject": "react-scripts eject"
   },
   "browserslist": [
