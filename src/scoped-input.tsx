@@ -24,7 +24,7 @@ function getChildrenIds(node: NodeApi) {
     })
 }
 
-function filterByIds(node: NodeApi, selectedNodes: string[]) {
+function filterChildNodes(node: NodeApi, selectedNodes: string[]) {
     const itemsToRemove = getChildrenIds(node)
     return selectedNodes.filter(
         (item) => !itemsToRemove.includes(item) && item !== node.id,
@@ -65,7 +65,7 @@ function Node<T extends NodeData>({ node, style, tree }: NodeRendererProps<T>) {
 
                     if (node.isSelected) {
                         return tree.setSelection({
-                            ids: filterByIds(node, selectedIds),
+                            ids: filterChildNodes(node, selectedIds),
                             anchor: null,
                             mostRecent: null,
                         })

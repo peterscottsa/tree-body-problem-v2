@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react'
-import { ScopedInput } from './ScopedInput'
+import { ScopedInput } from './scoped-input'
 
 import './output.css'
 
@@ -120,20 +120,12 @@ type IterableDataItem = {
     parent: string
 }
 
-const convertToIterable = (obj: { [key: string]: DataItem }) => {
-    const places: IterableDataItem[] = []
-
-    // Could also use map here to be more functional style but I think this reads better
-    for (const [id, location] of Object.entries(obj)) {
-        places.push({
-            id,
-            name: location.name,
-            parent: Object.keys(location?.parents ?? {})[0],
-        })
-    }
-
-    return places
-}
+const convertToIterable = (obj: { [key: string]: DataItem }) =>
+    Object.entries(obj).map(([id, location]) => ({
+        id,
+        name: location.name,
+        parent: Object.keys(location?.parents ?? {})[0],
+    }))
 
 function mapParentToChildren(parentId: string, children: IterableDataItem[]) {
     return children.filter((child) => child.parent == parentId)
