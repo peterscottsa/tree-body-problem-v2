@@ -30,6 +30,7 @@ In the real world, its unlikely I would build a component like this from scratch
 If I were to build this component from scratch I would probably use a depth first search algorithm to traverse the tree. In fact this is exactly the strategy employed by the react-arborist which you can see in the [source code](https://github.com/brimdata/react-arborist/blob/main/packages/react-arborist/src/utils.ts#L36-L46).
 
 ### What I would do with more time 🕰
+- Create a server that sends the data to the client. This would allow me to add some more tests around the data fetching and also allow me to add some more features like pagination and sorting.
 - Add some accessiblity features to the tree component. Likely keyboard support and aria attributes to help screen readers. 
 - Add some more tests. Mainly around some edge cases like what happens when the tree is empty or when the search term is not found.
 - Do some validation of the data structure to avoid id collisions and circular references.

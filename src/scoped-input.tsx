@@ -9,7 +9,7 @@ import {
 
 /**
  * @description Gets the ids of each child element if present
- * @param node
+ * @param node The current node
  */
 function getChildrenIds(node: NodeApi) {
     if (!node.children) {
@@ -24,6 +24,11 @@ function getChildrenIds(node: NodeApi) {
     })
 }
 
+/**
+ * @description Gets the ids of each child element if present
+ * @param node The current node
+ * @param selectedNodes The currently selected nodes
+ */
 function filterChildNodes(node: NodeApi, selectedNodes: string[]) {
     const itemsToRemove = getChildrenIds(node)
     return selectedNodes.filter(

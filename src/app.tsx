@@ -85,6 +85,10 @@ type Data = {
     groups: { [key: string]: DataItem }
 }
 
+/**
+ * @description Converts the tree to a data structure that can be used by the ScopedInput component
+ * @param tree The tree to convert
+ */
 function convertTreeToData(tree: Data) {
     // Create iterables from the data
     const locations = convertToIterable(tree.locations)
@@ -109,17 +113,16 @@ function convertTreeToData(tree: Data) {
     }))
 }
 
-/**
- * Convert to iterable
- * @description Creates an iterable from an object
- */
-
 type IterableDataItem = {
     id: string
     name: string
     parent: string
 }
 
+/**
+ * @description Creates an iterable from an object
+ * @param obj The object to convert
+ */
 const convertToIterable = (obj: { [key: string]: DataItem }) =>
     Object.entries(obj).map(([id, location]) => ({
         id,
@@ -127,6 +130,11 @@ const convertToIterable = (obj: { [key: string]: DataItem }) =>
         parent: Object.keys(location?.parents ?? {})[0],
     }))
 
+/**
+ * @description Maps children to a parent
+ * @param parentId The parent id
+ * @param children The children to map
+ */
 function mapParentToChildren(parentId: string, children: IterableDataItem[]) {
     return children.filter((child) => child.parent == parentId)
 }
